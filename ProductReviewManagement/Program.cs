@@ -35,7 +35,7 @@ namespace ProductReviewManagement
             };
         static void Main(string[] args)
         {
-            Console.WriteLine("Wellcome to Product Review Management system");
+            Console.WriteLine("Welcome to Product Review Management system");
             Management management = new Management();
             management.TopRecords(List);
             management.Operations();
