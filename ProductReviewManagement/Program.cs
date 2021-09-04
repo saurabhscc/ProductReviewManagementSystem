@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace ProductReviewManagement
 {
-    class Program
+    public class Program
     {
-      
-            public static List<ProductReview> productReviewList = new List<ProductReview>()
+            public static List<ProductReview> List = new List<ProductReview>()
             {
                 new ProductReview(){ProductID=1,UserID=1,Rating=5,Review="Good,IsLike=True"},
                 new ProductReview(){ProductID=2,UserID=2,Rating=4,Review="nice,IsLike=True"},
@@ -37,6 +36,8 @@ namespace ProductReviewManagement
         static void Main(string[] args)
         {
             Console.WriteLine("Wellcome to Product Review Management system");
+            Management management = new Management();
+            management.TopRecords(List);
         }
     }
 }
