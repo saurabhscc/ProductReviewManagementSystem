@@ -38,6 +38,8 @@ namespace ProductReviewManagement
             Console.WriteLine("Wellcome to Product Review Management system");
             Management management = new Management();
             management.TopRecords(List);
+            management.Operations();
+
         }
     }
 }
