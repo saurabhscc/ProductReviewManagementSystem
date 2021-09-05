@@ -86,9 +86,21 @@ namespace ProductReviewManagement
             var dataRow = from list in dataTable.AsEnumerable() select list;
             foreach (var item in dataRow)
             {
-                Console.WriteLine(item.Field<int>("ProductID") + " \t" + item.Field<int>("UserID") + " \t" +
-                    item.Field<double>("Rating") + " \t" + item.Field<string>("Review") + " \t" +
-                    item.Field<bool>("IsLike") + " \t");
+                Console.WriteLine(item.Field<int>("ProductID") + " " + item.Field<int>("UserID") + " " +
+                    item.Field<double>("Rating") + " " + item.Field<string>("Review") + " " +
+                    item.Field<bool>("IsLike") + " ");
+            }
+        }
+        public void RetriveRecordzFromDataTable(List<ProductReview> review)
+        {
+            var recordedData = from list in review
+                               where list.IsLike = true
+                               orderby list.ProductID
+                               select list;
+
+            foreach (var item in recordedData)
+            {
+                Console.WriteLine("Product Id: " + item.ProductID + "User ID: " + item.UserID + "Product Rating: " + item.Rating + "Product Review: " + item.Review + "Is Like: " + item.IsLike);
             }
         }
 
@@ -97,7 +109,7 @@ namespace ProductReviewManagement
             Program program = new Program();
             while (choice !=10)
             {
-                Console.WriteLine("\n Enter 1 for Display top Three records\n Enter 2 for Display Selected records\n Enter 3 for Display Count of Records For ProductID\n Enter 4 for Display ProductId And Review \n Enter 5 for Skip Top Five Records \n Enter 6 for Display ProductId And Review \n Enter 7 for Display Datatable  \n Enter 8 for exit ");
+                Console.WriteLine("\n Enter 1 for Display top Three records\n Enter 2 for Display Selected records\n Enter 3 for Display Count of Records For ProductID\n Enter 4 for Display ProductId And Review \n Enter 5 for Skip Top Five Records \n Enter 6 for Display ProductId And Review \n Enter 7 for Display Datatable\n Enter 8 Display Record IsLike  \n Enter 9 for exit ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -121,6 +133,9 @@ namespace ProductReviewManagement
                         break;
                     case 7:
                         DataTable(Program.List);
+                        break;
+                    case 8:
+                        RetriveRecordzFromDataTable(Program.List);
                         break;
                     default:
                         Console.WriteLine("Entered wrong input");

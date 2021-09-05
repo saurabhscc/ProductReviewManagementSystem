@@ -37,7 +37,6 @@ namespace ProductReviewManagement
         {
             Console.WriteLine("Welcome to Product Review Management system");
             Management management = new Management();
-            //management.TopRecords(List);
             management.Operations();
         }
     }
