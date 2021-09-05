@@ -103,13 +103,21 @@ namespace ProductReviewManagement
                 Console.WriteLine("Product Id: " + item.ProductID + "User ID: " + item.UserID + "Product Rating: " + item.Rating + "Product Review: " + item.Review + "Is Like: " + item.IsLike);
             }
         }
+        public void AveragePerProductID(List<ProductReview> review)
+        {
+            var recordedData = review.GroupBy(x => x.ProductID).Select(x => new { ProductID = x.Key, AverageRating = x.Average(x => x.Rating) });
+            foreach (var item in recordedData)
+            {
+                Console.WriteLine(item.ProductID + " " + item.AverageRating);
+            }
+        }
 
         public void Operations()
         {
             Program program = new Program();
             while (choice !=10)
             {
-                Console.WriteLine("\n Enter 1 for Display top Three records\n Enter 2 for Display Selected records\n Enter 3 for Display Count of Records For ProductID\n Enter 4 for Display ProductId And Review \n Enter 5 for Skip Top Five Records \n Enter 6 for Display ProductId And Review \n Enter 7 for Display Datatable\n Enter 8 Display Record IsLike  \n Enter 9 for exit ");
+                Console.WriteLine("\n Enter 1 for Display top Three records\n Enter 2 for Display Selected records\n Enter 3 for Display Count of Records For ProductID\n Enter 4 for Display ProductId And Review \n Enter 5 for Skip Top Five Records \n Enter 6 for Display ProductId And Review \n Enter 7 for Display Datatable\n Enter 8 Display Record IsLike \n Enter 9 Display Average Per ProductID  \n Enter 10 for exit ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -136,6 +144,9 @@ namespace ProductReviewManagement
                         break;
                     case 8:
                         RetriveRecordzFromDataTable(Program.List);
+                        break;
+                    case 9:
+                        AveragePerProductID(Program.List);
                         break;
                     default:
                         Console.WriteLine("Entered wrong input");
