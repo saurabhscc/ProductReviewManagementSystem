@@ -70,12 +70,34 @@ namespace ProductReviewManagement
             }
         
         }
+        public void DataTable(List<ProductReview> review)
+        {
+            dataTable.Columns.Add("ProductId", typeof(int));
+            dataTable.Columns.Add("UserId", typeof(int));
+            dataTable.Columns.Add("Rating", typeof(double));
+            dataTable.Columns.Add("Review", typeof(string));
+            dataTable.Columns.Add("IsLike", typeof(bool));
+            var recordedData = from list in review
+                               select list;
+            foreach (var item in recordedData)
+            {
+                dataTable.Rows.Add(item.ProductID, item.UserID, item.Rating, item.Review, item.IsLike);
+            }
+            var dataRow = from list in dataTable.AsEnumerable() select list;
+            foreach (var item in dataRow)
+            {
+                Console.WriteLine(item.Field<int>("ProductID") + " \t" + item.Field<int>("UserID") + " \t" +
+                    item.Field<double>("Rating") + " \t" + item.Field<string>("Review") + " \t" +
+                    item.Field<bool>("IsLike") + " \t");
+            }
+        }
+
         public void Operations()
         {
             Program program = new Program();
             while (choice !=10)
             {
-                Console.WriteLine("\n Enter 1 for Display top Three records\n Enter 2 for Display Selected records\n Enter 3 for Display Count of Records For ProductID\n Enter 4 for Display ProductId And Review \n Enter 5 for Skip Top Five Records \n Enter 6 for Display ProductId And Review  \n Enter 7 for exit ");
+                Console.WriteLine("\n Enter 1 for Display top Three records\n Enter 2 for Display Selected records\n Enter 3 for Display Count of Records For ProductID\n Enter 4 for Display ProductId And Review \n Enter 5 for Skip Top Five Records \n Enter 6 for Display ProductId And Review \n Enter 7 for Display Datatable  \n Enter 8 for exit ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -96,6 +118,9 @@ namespace ProductReviewManagement
                         break;
                     case 6:
                         SelectIdAndReview(Program.List);
+                        break;
+                    case 7:
+                        DataTable(Program.List);
                         break;
                     default:
                         Console.WriteLine("Entered wrong input");
