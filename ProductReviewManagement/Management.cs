@@ -18,7 +18,7 @@ namespace ProductReviewManagement
 
             foreach (var item in recordedData)
             {
-                Console.WriteLine("Product Id: " + item.ProductID + "\tUser Id: " + item.UserID + "\tProduct Rating: " + item.Rating  + "\tProduct Review:" + item.Review + "\tIsLike: " + item.IsLike);
+                Console.WriteLine("Product ID: " + item.ProductID + "\tUser ID: " + item.UserID + "\tProduct Rating: " + item.Rating  + "\tProduct Review:" + item.Review + "\tIsLike: " + item.IsLike);
             }
         }
         public void RetrivePerticularRecord(List<ProductReview> review)
@@ -28,7 +28,7 @@ namespace ProductReviewManagement
                                select list;
             foreach (var item in recordedData)
             {
-                Console.WriteLine("Product Id: " + item.ProductID + "\tUser Id: " + item.UserID + "\tProduct Rating: " + item.Rating + "\tProduct Review:" + item.Review + "\tIs Like: " + item.IsLike);
+                Console.WriteLine("Product ID: " + item.ProductID + "\tUser ID: " + item.UserID + "\tProduct Rating: " + item.Rating + "\tProduct Review:" + item.Review + "\tIs Like: " + item.IsLike);
             }
         }
         public void RetriveCountOfREcords(List<ProductReview> review)
@@ -46,7 +46,7 @@ namespace ProductReviewManagement
                                select new { list.ProductID, list.Rating };
             foreach (var item in recordedData)
             {
-                Console.WriteLine("Product Id : " + item.ProductID + "\t\tProduct Rating : " + item.Rating);
+                Console.WriteLine("Product ID : " + item.ProductID + "\t\tProduct Rating : " + item.Rating);
             }
         }
         public void SkipTopFiveRecords(List<ProductReview> review)
@@ -55,7 +55,7 @@ namespace ProductReviewManagement
                                select list).Skip(5);
             foreach (var item in recordedData)
             {
-                Console.WriteLine("Product Id : " + item.ProductID + "\t\tProduct Rating : " + item.Rating);
+                Console.WriteLine("Product ID : " + item.ProductID + "\t\tProduct Rating : " + item.Rating);
             }
         }
         public void SelectIdAndReview(List<ProductReview> review)
@@ -66,14 +66,14 @@ namespace ProductReviewManagement
                                 
             foreach (var item in recordedData)
             {
-                Console.WriteLine("Product Id : " + item.ProductID + "\t\tProduct Review : " + item.Review);
+                Console.WriteLine("Product ID : " + item.ProductID + "\t\tProduct Review : " + item.Review);
             }
         
         }
         public void DataTable(List<ProductReview> review)
         {
-            dataTable.Columns.Add("ProductId", typeof(int));
-            dataTable.Columns.Add("UserId", typeof(int));
+            dataTable.Columns.Add("ProductID", typeof(int));
+            dataTable.Columns.Add("UserID", typeof(int));
             dataTable.Columns.Add("Rating", typeof(double));
             dataTable.Columns.Add("Review", typeof(string));
             dataTable.Columns.Add("IsLike", typeof(bool));
@@ -100,7 +100,7 @@ namespace ProductReviewManagement
 
             foreach (var item in recordedData)
             {
-                Console.WriteLine("Product Id: " + item.ProductID + "User ID: " + item.UserID + "Product Rating: " + item.Rating + "Product Review: " + item.Review + "Is Like: " + item.IsLike);
+                Console.WriteLine("Product ID: " + item.ProductID + "User ID: " + item.UserID + "Product Rating: " + item.Rating + "Product Review: " + item.Review + "Is Like: " + item.IsLike);
             }
         }
         public void AveragePerProductID(List<ProductReview> review)
@@ -111,13 +111,24 @@ namespace ProductReviewManagement
                 Console.WriteLine(item.ProductID + " " + item.AverageRating);
             }
         }
+        public void RetriveRecordUsingReview(List<ProductReview> review,string msg)
+        {
+            var recordedData = from list in review
+                               where list.Review == msg
+                               select list;
+            foreach(var item in recordedData)
+            {
+                Console.WriteLine("Product ID: " + item.ProductID + "User ID: " + item.UserID + "Product Rating: " + item.Rating + "Product Review: " + item.Review + "Is Like: " + item.IsLike);
 
+            }
+
+        }
         public void Operations()
         {
             Program program = new Program();
-            while (choice !=10)
+            while (choice !=15)
             {
-                Console.WriteLine("\n Enter 1 for Display top Three records\n Enter 2 for Display Selected records\n Enter 3 for Display Count of Records For ProductID\n Enter 4 for Display ProductId And Review \n Enter 5 for Skip Top Five Records \n Enter 6 for Display ProductId And Review \n Enter 7 for Display Datatable\n Enter 8 Display Record IsLike \n Enter 9 Display Average Per ProductID  \n Enter 10 for exit ");
+                Console.WriteLine("\n Enter 1. Display top Three records\n Enter 2.Display Selected records\n Enter 3.Display Count of Records For ProductID\n Enter 4.Display ProductId And Review \n Enter 5.Skip Top Five Records \n Enter 6.Display ProductId And Review \n Enter 7.Display Datatable\n Enter 8.Display Record IsLike \n Enter 9.Display Average Per ProductID \n Enter 10.Display Record Using Review   \n Enter 11.exit ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -147,6 +158,9 @@ namespace ProductReviewManagement
                         break;
                     case 9:
                         AveragePerProductID(Program.List);
+                        break;
+                    case 10:
+                        RetriveRecordUsingReview(Program.List, "nice");
                         break;
                     default:
                         Console.WriteLine("Entered wrong input");
