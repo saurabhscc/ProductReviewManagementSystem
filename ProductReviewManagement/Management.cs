@@ -119,16 +119,30 @@ namespace ProductReviewManagement
             foreach(var item in recordedData)
             {
                 Console.WriteLine("Product ID: " + item.ProductID + "User ID: " + item.UserID + "Product Rating: " + item.Rating + "Product Review: " + item.Review + "Is Like: " + item.IsLike);
-
             }
-
         }
+        public void RetriveRecordsFromDataTableUsingUserID(List<ProductReview> review, int id)
+        {
+            var recordedData = from list in review
+                               where list.UserID == id
+                               orderby list.ProductID
+                               select list;
+
+            foreach (var item in recordedData)
+            {
+                Console.WriteLine("Product ID: " + item.ProductID + "User ID: " + item.UserID + "Product Rating: " + item.Rating + "Product Review: " + item.Review + "Is Like: " + item.IsLike);
+            }
+        }
+
+
         public void Operations()
         {
+
             Program program = new Program();
-            while (choice !=15)
+            while (choice !=12)
             {
-                Console.WriteLine("\n Enter 1. Display top Three records\n Enter 2.Display Selected records\n Enter 3.Display Count of Records For ProductID\n Enter 4.Display ProductId And Review \n Enter 5.Skip Top Five Records \n Enter 6.Display ProductId And Review \n Enter 7.Display Datatable\n Enter 8.Display Record IsLike \n Enter 9.Display Average Per ProductID \n Enter 10.Display Record Using Review   \n Enter 11.exit ");
+                Console.WriteLine(" Enter Options:\n1.Display Top Three records\n2.Display Selected Records\n3.Display Count of Records For ProductID\n4.Display ProductID And Review \n5.Display Skiping Top Five Records\n6.Display ProductId And Review\n7.Display Datatable\n8.Display Record IsLike\n9.Display Average Per ProductID\n10.Display Record Using Review\n11.Display Records From DataTable Using UserID\n12.exit");
+                Console.WriteLine("<<<<<<-------------->>>>>>");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -162,8 +176,11 @@ namespace ProductReviewManagement
                     case 10:
                         RetriveRecordUsingReview(Program.List, "nice");
                         break;
+                    case 11:
+                        RetriveRecordsFromDataTableUsingUserID(Program.List,10);
+                        break;
                     default:
-                        Console.WriteLine("Entered wrong input");
+                        Console.WriteLine("Entered Wrong Input Select Option Between 1-11");
                         break;
                 }
             }

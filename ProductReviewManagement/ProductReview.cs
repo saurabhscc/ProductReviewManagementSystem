@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ProductReviewManagement
 {
+    //model class
     public class ProductReview
     {
         public int ProductID { get; set; }

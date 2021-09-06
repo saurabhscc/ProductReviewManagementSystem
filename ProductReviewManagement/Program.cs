@@ -31,7 +31,12 @@ namespace ProductReviewManagement
                 new ProductReview(){ProductID=22,UserID=1,Rating=1,Review="bad",IsLike=false},
                 new ProductReview(){ProductID=23,UserID=1,Rating=4,Review="nice",IsLike=true},
                 new ProductReview(){ProductID=24,UserID=1,Rating=1,Review="bad",IsLike=false},
-                new ProductReview(){ProductID=25,UserID=1,Rating=5,Review="Good",IsLike=true},
+                new ProductReview(){ProductID=25,UserID=10,Rating=5,Review="Good",IsLike=true},
+                new ProductReview(){ProductID=26,UserID=10,Rating=4.5,Review="Good",IsLike=true},
+                new ProductReview(){ProductID=27,UserID=10,Rating=4,Review="nice",IsLike=true},
+                new ProductReview(){ProductID=28,UserID=10,Rating=3,Review="Average",IsLike=true},
+                new ProductReview(){ProductID=29,UserID=10,Rating=2,Review="bad",IsLike=false},
+                new ProductReview(){ProductID=30,UserID=10,Rating=1.5,Review="bad",IsLike=false},
             };
         static void Main(string[] args)
         {
